@@ -11,11 +11,11 @@ public interface MovieRepository {
 
     Movie get(int movieId) throws RepositoryException;
 
-    Movie get(String movieName, String movieGenre, String movieCountry) throws RepositoryException;
+    Movie get(String movieName, String movieGenre, String movieCountry, String movieDuration, int moviePrice) throws RepositoryException;
 
-    void add(Movie Movie) throws RepositoryException;
+    void add(Movie movie) throws RepositoryException;
 
-    void update(Movie Movie) throws RepositoryException;
+    void update(Movie movie) throws RepositoryException;
 
     void delete(int movieId) throws RepositoryException;
 }

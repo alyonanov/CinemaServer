@@ -1,8 +1,8 @@
 package command;
 
-import usage.cooperation.ServerResponse;
+import command.exception.CommandException;
+import usage.cooper.ServerResponse;
 
 public interface Command {
-
     ServerResponse execute() throws CommandException;
 }

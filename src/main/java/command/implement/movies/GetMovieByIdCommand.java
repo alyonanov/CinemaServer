@@ -1,25 +1,24 @@
-package command.implement.user;
+package command.implement.movies;
 
-import service.AdminService;
-import service.exception.ServiceException;
 import command.Command;
 import command.exception.CommandException;
+import service.AdminService;
+import service.exception.ServiceException;
 import service.implement.AdminServiceImplement;
 import usage.cooper.ClientRequest;
 import usage.cooper.ServerResponse;
-import entities.User;
+import entities.Movie;
 
-import java.util.List;
-import java.util.Map;
 import java.util.HashMap;
-public class GetAllUsersCommand implements Command {
+import java.util.Map;
 
+public class GetMovieByIdCommand implements Command {
+
+    private AdminService service;
     private ClientRequest request;
     private ServerResponse response;
-    private AdminService service;
 
-
-    public GetAllUsersCommand(ClientRequest request, ServerResponse response) {
+    public GetMovieByIdCommand(ClientRequest request, ServerResponse response) {
         this.request = request;
         this.response = response;
         this.service = AdminServiceImplement.getInstance();
@@ -27,10 +26,12 @@ public class GetAllUsersCommand implements Command {
 
     @Override
     public ServerResponse execute() throws CommandException {
+        Map<String, Object> requestData = request.getData();
+        int movieId = (int) requestData.get("movieId");
         try {
-            List<User> users = service.getAllUsers();
+            Movie movie = service.getMovieById(movieId);
             Map<String, Object> data = new HashMap<>();
-            data.put("users", users);
+            data.put("movie", movie);
             response.setData(data);
         } catch (ServiceException e) {
             throw new CommandException(e);

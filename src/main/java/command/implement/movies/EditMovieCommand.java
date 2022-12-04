@@ -13,13 +13,14 @@ import usage.cooper.ServerResponse;
 
 import java.util.Map;
 
-public class AddMovieCommand implements Command {
-    private AdminService service;
+public class EditMovieCommand implements Command {
+
     private UserService userService;
+    private AdminService service;
     private ClientRequest request;
     private ServerResponse response;
 
-    public AddMovieCommand(ClientRequest request, ServerResponse response) {
+    public EditMovieCommand(ClientRequest request, ServerResponse response) {
         this.service = AdminServiceImplement.getInstance();
         this.userService = UserServiceImplement.getInstance();
         this.request = request;
@@ -29,15 +30,17 @@ public class AddMovieCommand implements Command {
     public ServerResponse execute() throws CommandException {
         Map<String, Object> data = request.getData();
 
+        int movieId = (int) data.get("movie_id");
         String movieName = (String) data.get("movie_name");
         String movieGenre = (String) data.get("movie_genre");
         String movieCountry = (String) data.get("movie_country");
         String movieDuration = (String) data.get("movie_duration");
         int moviePrice = (int) data.get("movie_price");
+        int hallId = (int) data.get("hallId");
 
         try {
-            service.addMovie(movieName, movieGenre, movieCountry, movieDuration,
-                    moviePrice);
+            service.editMovie(movieId, movieName, movieGenre, movieCountry, movieDuration,
+                    moviePrice, hallId);
         } catch (ServiceException e) {
             throw new CommandException(e);
         } catch (RepositoryException e) {

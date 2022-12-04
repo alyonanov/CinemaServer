@@ -4,7 +4,7 @@ package usage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import command.Command;
 import command.exception.CommandException;
-import command.factory.CommandFactory;
+import command.works.CommandWorks;
 import main.Runner;
 import usage.cooper.ClientRequest;
 import usage.cooper.ServerResponse;
@@ -32,8 +32,8 @@ public class ClientHandler implements Runnable {
             try {
                 ClientRequest request = getData();
                 String action = request.getCommandName();
-                CommandFactory factory = CommandFactory.getInstance();
-                Command command = factory.createCommand(action, request, new ServerResponse());
+                CommandWorks works = CommandWorks.getInstance();
+                Command command = works.createCommand(action, request, new ServerResponse());
                 try {
                     ServerResponse response = command.execute();
                     sendData(response);

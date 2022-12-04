@@ -25,8 +25,8 @@ public class Runner extends Application implements Runnable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/server.fxml"));
         Parent root = loader.load();
         serverController = loader.getController();
-        primaryStage.setTitle("Server application");
-        primaryStage.setScene(new Scene(root, 600, 300));
+        primaryStage.setTitle("Server");
+        primaryStage.setScene(new Scene(root, 400, 200));
         primaryStage.show();
     }
 

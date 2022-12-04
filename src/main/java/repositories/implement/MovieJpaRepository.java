@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import repositories.MovieRepository;
 import repositories.exception.RepositoryException;
 import usage.config.AppConfig;
+import entities.Movie;
 
 import java.util.List;
 
@@ -46,13 +47,17 @@ public class MovieJpaRepository implements MovieRepository {
 
     @Override
     public Movie get(String movieName,
-                      String movieGenre,
-                      String movieCountry) throws RepositoryException {
+                     String movieGenre,
+                     String movieCountry,
+                     String movieDuration,
+                     int moviePrice) throws RepositoryException {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Movie WHERE movieName = ?1 and movieGenre = ?2 and movieCountry = ?3", Movie.class)
+            return session.createQuery("FROM Movie WHERE movieName = ?1 and movieGenre = ?2 and movieCountry = ?3 and movieDuration = ?4 and moviePrice = ?5", Movie.class)
                     .setParameter(1, movieName)
                     .setParameter(2, movieGenre)
                     .setParameter(3, movieCountry)
+                    .setParameter(4,movieDuration)
+                    .setParameter(5,moviePrice)
                     .uniqueResult();
         } catch (HibernateException e) {
             throw new RepositoryException(e);

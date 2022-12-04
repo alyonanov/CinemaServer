@@ -21,10 +21,11 @@ import javax.persistence.Table;
 public class User {
 
     public User(String username, String firstName, String lastName,
-                String email, String password) {
+                UserStatus userStatus, String email, String password) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userStatus = userStatus;
         this.email = email;
         this.password = password;
     }
@@ -42,10 +43,14 @@ public class User {
 
     @Column(name = "last_name")
     private String lastName;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private UserStatus userStatus;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
     private String password;
+
 }
