@@ -29,7 +29,7 @@ public class GetAllCinemaHallsCommand implements Command {
         try {
             List<CinemaHall> cinemaHalls = service.getAllCinemaHalls();
             Map<String, Object> data = new HashMap<>();
-            data.put("cinemahall", cinemaHalls);
+            data.put("cinemaHalls", cinemaHalls);
             response.setData(data);
         } catch (ServiceException e) {
             throw new CommandException(e);

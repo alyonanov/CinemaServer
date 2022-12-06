@@ -29,15 +29,16 @@ public class AddMovieCommand implements Command {
     public ServerResponse execute() throws CommandException {
         Map<String, Object> data = request.getData();
 
-        String movieName = (String) data.get("movie_name");
-        String movieGenre = (String) data.get("movie_genre");
-        String movieCountry = (String) data.get("movie_country");
-        String movieDuration = (String) data.get("movie_duration");
-        int moviePrice = (int) data.get("movie_price");
+        String movieName = (String) data.get("movieName");
+        String movieGenre = (String) data.get("movieGenre");
+        String movieCountry = (String) data.get("movieCountry");
+        String movieDuration = (String) data.get("movieDuration");
+        int moviePrice = (int) data.get("moviePrice");
+        int cinemaHallId = (int) data.get("cinemaHallId");
 
         try {
             service.addMovie(movieName, movieGenre, movieCountry, movieDuration,
-                    moviePrice);
+                    moviePrice,cinemaHallId);
         } catch (ServiceException e) {
             throw new CommandException(e);
         } catch (RepositoryException e) {

@@ -34,5 +34,8 @@ public class Movie {
     @Column(name = "movie_price")
     private int moviePrice;
 
+    @ManyToOne
+    @JoinColumn(name = "cinemahall_id")
+    private CinemaHall cinemaHallId;
 
 }
