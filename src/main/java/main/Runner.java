@@ -22,12 +22,14 @@ public class Runner extends Application implements Runnable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/server.fxml"));
         Parent root = loader.load();
         serverController = loader.getController();
         primaryStage.setTitle("Server");
         primaryStage.setScene(new Scene(root, 400, 200));
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {
@@ -38,7 +40,7 @@ public class Runner extends Application implements Runnable {
 
     public void run() {
         try {
-            ServerSocket serverSocket = new ServerSocket(5000, 10);
+            ServerSocket serverSocket = new ServerSocket(6000, 10);
             while (true) {
                 Socket socket = serverSocket.accept();
                 ClientHandler handler = new ClientHandler(socket);
@@ -51,10 +53,14 @@ public class Runner extends Application implements Runnable {
 
     public static void incrementConnectionsNumber() {
         serverController.incrementConnectionsNumber();
+
+
+
     }
 
     public static void incrementUsersOnline() {
         serverController.incrementUsersOnline();
+
     }
 
     public static void decrementUsersOnline() {

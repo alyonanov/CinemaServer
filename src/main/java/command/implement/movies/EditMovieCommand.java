@@ -30,17 +30,17 @@ public class EditMovieCommand implements Command {
     public ServerResponse execute() throws CommandException {
         Map<String, Object> data = request.getData();
 
-        int movieId = (int) data.get("movie_id");
-        String movieName = (String) data.get("movie_name");
-        String movieGenre = (String) data.get("movie_genre");
-        String movieCountry = (String) data.get("movie_country");
-        String movieDuration = (String) data.get("movie_duration");
-        int moviePrice = (int) data.get("movie_price");
-        int hallId = (int) data.get("hallId");
+        int movieId = (int) data.get("movieId");
+        String movieName = (String) data.get("movieName");
+        String movieGenre = (String) data.get("movieGenre");
+        String movieCountry = (String) data.get("movieCountry");
+        String movieDuration = (String) data.get("movieDuration");
+        int moviePrice = (int) data.get("moviePrice");
+        int cinemaHallId = (int) data.get("cinemaHallId");
 
         try {
             service.editMovie(movieId, movieName, movieGenre, movieCountry, movieDuration,
-                    moviePrice, hallId);
+                    moviePrice, cinemaHallId);
         } catch (ServiceException e) {
             throw new CommandException(e);
         } catch (RepositoryException e) {

@@ -37,7 +37,7 @@ public class MovieJpaRepository implements MovieRepository {
     @Override
     public Movie get(int movieId) throws RepositoryException {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Worker WHERE workerId = ?1", Movie.class)
+            return session.createQuery("FROM Movie WHERE movieId = ?1", Movie.class)
                     .setParameter(1, movieId)
                     .uniqueResult();
         } catch (HibernateException e) {

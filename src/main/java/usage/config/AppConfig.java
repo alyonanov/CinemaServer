@@ -38,7 +38,7 @@ public class AppConfig {
         Configuration configuration = new Configuration();
         configuration.setProperties(hibernateProperties());
         configuration.addAnnotatedClass(User.class);
-
+        configuration.addAnnotatedClass(Booking.class);
         configuration.addAnnotatedClass(UserStatus.class);
         configuration.addAnnotatedClass(Movie.class);
         configuration.addAnnotatedClass(CinemaHall.class);

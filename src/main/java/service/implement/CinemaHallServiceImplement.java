@@ -28,7 +28,7 @@ public class CinemaHallServiceImplement implements CinemaHallService {
         if (Objects.nonNull(hallType) && !hallType.isEmpty()) {
             CinemaHall cinemaHall = new CinemaHall();
             cinemaHall.setHallType(hallType);
-
+            cinemaHall.setHallSeatsNumber(hallSeatsNumber);
             try {
                 cinemaHallRepository.add(cinemaHall);
             } catch (RepositoryException e) {
@@ -40,9 +40,9 @@ public class CinemaHallServiceImplement implements CinemaHallService {
     }
 
     @Override
-    public void deleteCinemaHall(int hallId) throws ServiceException {
+    public void deleteCinemaHall(int id) throws ServiceException {
         try {
-            cinemaHallRepository.delete(hallId);
+            cinemaHallRepository.delete(id);
         } catch (RepositoryException e) {
             throw new ServiceException(e);
         }

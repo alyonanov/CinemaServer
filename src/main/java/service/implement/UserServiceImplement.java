@@ -19,6 +19,7 @@ public class UserServiceImplement implements UserService {
 
     private UserServiceImplement() {
     }
+    private final BookingRepository bookingRepository = BookingJpaRepository.getInstance();
 
     private final UserRepository userRepository = UserJpaRepository.getInstance();
     private final MovieRepository movieRepository = MovieJpaRepository.getInstance();
@@ -98,6 +99,23 @@ public class UserServiceImplement implements UserService {
         } catch (RepositoryException e) {
             throw new ServiceException(e);
         }
+    }
+    public List<Booking> getAllBookings() throws ServiceException {
+        try {
+            return bookingRepository.getAll();
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void booking(int userId, int movieId) throws ServiceException, RepositoryException {
+        Booking booking = new Booking();
+        User user = userRepository.get(userId);
+        Movie movie = movieRepository.get(movieId);
+        booking.setUserId(user);
+        booking.setMovieId(movie);
+        bookingRepository.add(booking);
     }
 
 

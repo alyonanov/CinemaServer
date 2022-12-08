@@ -47,6 +47,10 @@ public class CommandWorks {
                 return new EditMovieCommand(request, response);
             case "getMovieById":
                 return new GetMovieByIdCommand(request, response);
+            case "booking":
+                return new BookingCommand(request,response);
+            case "getAllBookings":
+                return new GetAllBookingsCommand(request, response);
 
             //CINEMA HALL
             case "getAllCinemaHalls":

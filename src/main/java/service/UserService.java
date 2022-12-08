@@ -1,9 +1,11 @@
 package service;
 
+import entities.Booking;
 import entities.CinemaHall;
 import entities.User;
 import entities.Movie;
 
+import repositories.exception.RepositoryException;
 import service.exception.ServiceException;
 
 import java.util.List;
@@ -25,5 +27,8 @@ public interface UserService {
     List<Movie> getAllMovies() throws ServiceException;
 
     List<CinemaHall> getAllCinemaHalls() throws ServiceException;
+    List<Booking> getAllBookings() throws ServiceException;
+
+    void booking(int userId, int movieId) throws ServiceException, RepositoryException;
 
 }

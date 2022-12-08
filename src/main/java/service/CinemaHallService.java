@@ -9,7 +9,7 @@ public interface CinemaHallService {
 
     void deleteCinemaHall(int hallId) throws ServiceException;
 
-    void editCinemaHall(int hallId, String hallType, int hallSeatsNumber) throws ServiceException;
+    //void editCinemaHall(int hallId, String hallType, int hallSeatsNumber) throws ServiceException;
 
     CinemaHall getById(int hallId) throws ServiceException;
 

@@ -31,15 +31,17 @@ public class AdminServiceImplement implements AdminService {
                          String movieGenre,
                          String movieCountry,
                          String movieDuration,
-                         int moviePrice) throws ServiceException, RepositoryException {
+                         int moviePrice, int cinemaHallId) throws ServiceException, RepositoryException {
         Movie existingMovie = movieRepository.get(movieName, movieGenre, movieCountry, movieDuration, moviePrice);
         if (existingMovie == null) {
             Movie movie = new Movie();
+            CinemaHall cinemaHall = cinemaHallRepository.get(cinemaHallId);
             movie.setMovieName(movieName);
             movie.setMovieGenre(movieGenre);
             movie.setMovieCountry(movieCountry);
             movie.setMovieDuration(movieDuration);
             movie.setMoviePrice(moviePrice);
+            movie.setCinemaHallId(cinemaHall);
             movieRepository.add(movie);
         } else {
             throw new ServiceException("Фильм с таким названием уже существует..");
@@ -54,8 +56,8 @@ public class AdminServiceImplement implements AdminService {
                            int moviePrice,
                            int hallId) throws ServiceException, RepositoryException {
 
-            Movie existingMovie = movieRepository.get(movieName, movieGenre, movieCountry, movieDuration, moviePrice);
-            if (Objects.nonNull(existingMovie) && existingMovie.getMovieId() == movieId) {
+           // Movie existingMovie = movieRepository.get(movieName, movieGenre, movieCountry, movieDuration, moviePrice);
+//            if (Objects.nonNull(existingMovie)) {
                 CinemaHall cinemahall = cinemaHallRepository.get(hallId);
                 Movie movie = movieRepository.get(movieId);
 
@@ -64,12 +66,11 @@ public class AdminServiceImplement implements AdminService {
                 movie.setMovieCountry(movieCountry);
                 movie.setMovieDuration(movieDuration);
                 movie.setMoviePrice(moviePrice);
-
+                movie.setCinemaHallId(cinemahall);
                 movieRepository.update(movie);
-            } else {
-                throw new ServiceException("Такой фильм уже существует");
+//            } else {
+//                throw new ServiceException("Такой фильм уже существует");
         }
-    }
 
     @Override
     public void deleteMovie(int movieId) throws ServiceException {

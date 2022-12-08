@@ -17,6 +17,7 @@ public class ServerController {
 
     public void incrementConnectionsNumber() {
         connectionsNumber.setText(String.valueOf(Integer.parseInt(connectionsNumber.getText()) + 1));
+
     }
 
     public void incrementUsersOnline() {

@@ -1,5 +1,6 @@
 package service;
 
+import entities.CinemaHall;
 import entities.User;
 import entities.Movie;
 
@@ -12,7 +13,7 @@ public interface AdminService {
     // MOVIES
     void addMovie(String movieName, String movieGenre,
                    String movieCountry, String movieDuration,
-                   int moviePrice) throws ServiceException, RepositoryException;
+                   int moviePrice, int cinemaHallId) throws ServiceException, RepositoryException;
     void editMovie(int movieId, String movieName,
                     String movieGenre, String movieCountry,
                     String movieDuration, int moviePrice, int hallId) throws ServiceException, RepositoryException;
